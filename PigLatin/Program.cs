@@ -6,7 +6,10 @@ namespace PigLatin
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine(PigLatinTranslator.TranslateWord("apple"));
+            Console.WriteLine(PigLatinTranslator.TranslateWord("Trebuchet"));
+        
+            Console.WriteLine(PigLatinTranslator.TranslateSentence("I like to eat honey waffles."));
         }
     }
 }
