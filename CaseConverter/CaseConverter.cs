@@ -18,11 +18,12 @@ namespace CaseConverter
 
                 if (curr == '_')
                 {
-                    char next = Char.ToUpper(str[i + 1]);
-                    string nextUpper = next.ToString();
+                    char next = str[i + 1];
+                    char nextUpper = Char.ToUpper(next);
+                    string nextUpperStr = nextUpper.ToString();
 
                     newStr = str.Remove(i, 2);
-                    newStr = newStr.Insert(i, nextUpper);
+                    newStr = newStr.Insert(i, nextUpperStr);
                 }
             }
 
