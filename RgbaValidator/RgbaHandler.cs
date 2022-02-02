@@ -10,41 +10,58 @@ namespace RgbaValidator
 	{
 		public static bool ValidateString(string str)
 		{
-			if (str[3] == '\u0020' || str[4] == '\u0020') return false;
+			// Check for whitespace before parantheses
+			if (str[3] == ' ' || str[4] == ' ')
+				return false;
 
+			// Check if RGBA or RGB and extract values
 			bool isRgba = IsRgba(str);
-			string values = ExtractValues(str);
+			string[] valuesArr = ExtractValues(str);
+
+			// Validate RGBA or RGB
+			if (isRgba)
+				return ValidateRgbaValues(valuesArr);
 			
-			string[] valuesArr = values.Split(',');
-
-			if (isRgba) ValidateRgbaValues(valuesArr);
-
 			return ValidateRgbValues(valuesArr);
 		}
 
 
 		private static bool ValidateRgbaValues(string[] valuesArr)
 		{
-			if (valuesArr.Length != 4) return false;
+			if (valuesArr.Contains(string.Empty)) return false;
 
-			List<double> newValuesArr = new();
 
-			foreach (string item in valuesArr)
-			{
-				string trimmed = item.Trim();
-				newValuesArr.Add(Double.Parse(trimmed));
-			}
 
-			double r = newValuesArr[0];
-			double g = newValuesArr[1];
-			double b = newValuesArr[2];
-			double a = newValuesArr[3];
-
-			bool IsRgbValid = ValidateRgbValues(r, g, b);
+			bool IsRgbValid = ValidateRgbValues(valuesArr);
 			bool IsAlphaValid = ValidateAlpha(a);
 
 			return IsRgbValid && IsAlphaValid;
 		}
+
+		private static bool ArePercentsValid(string[] valuesArr)
+		{
+			List<double> newValuesArr = new();
+			List<bool> boolValues = new();
+
+			foreach (string value in valuesArr)
+			{
+				string withoutPercent = value.Remove(value.Length - 1);
+				double newValue = Double.Parse(withoutPercent);
+				
+				newValuesArr.Add(newValue);
+			}
+
+			foreach (double item in newValuesArr)
+				boolValues.Add(IsBetweenRange(item, 0, 100));
+		
+			if (boolValues.TrueForAll(value => value))
+				return true;
+
+			return false;
+		}
+
+		private static bool IsBetweenRange(double item, int v1, int v2) 
+			=> (item >= v1 && item <= v2);
 
 		private static bool ValidateAlpha(double a)
 		{
@@ -55,40 +72,29 @@ namespace RgbaValidator
 			return validAlpha;
 		}
 
-		private static bool ValidateRgbValues(double r, double g, double b)
-		{
-			bool validR = true;
-			bool validG = true;
-			bool validB = true;
-			
-			if (r > 255 || r < 0) validR = false;
-			if (g > 255 || g < 0) validG = false;
-			if (b > 255 || b < 0) validB = false;
-
-			return validR && validG && validB;
-		}
-
 		private static bool ValidateRgbValues(string[] valuesArr)
 		{
-			if (valuesArr.Length != 3) return false;
+			if (valuesArr.Contains(string.Empty))
+				return false;
 
-			double r = double.Parse(valuesArr[0]);
-			double g = double.Parse(valuesArr[1]);
-			double b = double.Parse(valuesArr[2]);
+			if (valuesArr.Any(value => value.EndsWith('%')))
+				return ArePercentsValid(valuesArr);
 
-			return ValidateRgbValues(r, g, b);
+			return false;
 		}
 
-		private static string ExtractValues(string str)
+		private static string[] ExtractValues(string str)
 		{
 			int start = str.IndexOf('(') + 1;
 			int end = str.IndexOf(')');
 
 			string values = str.Substring(start, end - start);
+			string[] valuesArr = values.Split(',');
 
-			return values;
+			return valuesArr;
 		}
 
-		private static bool IsRgba(string str) => str.ToLower().StartsWith("rgba");
+		private static bool IsRgba(string str) 
+			=> str.ToLower().StartsWith("rgba");
 	}
 }
