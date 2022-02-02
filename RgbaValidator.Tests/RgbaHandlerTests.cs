@@ -7,7 +7,7 @@ namespace RgbaValidator.Tests
 	{
 		[Theory]
 		[InlineData("rgb(0,0,0)")]
-		[InlineData("rgb(255,255,255")]
+		[InlineData("rgb(255,255,255)")]
 		[InlineData("rgba(0,0,0,0)")]
 		[InlineData("rgba(255,255,255,1)")]
 		[InlineData("rgba(0,0,0,0.123456789)")]
@@ -23,12 +23,11 @@ namespace RgbaValidator.Tests
 			// Assert
 			Assert.Equal(expected, actual);
 		}
-
 		[Theory]
 		[InlineData("rgb(0,,0)")]
 		[InlineData("rgb (0,0,0)")]
 		[InlineData("rgb(0,0,0,0)")]
-		[InlineData("rgba(255,255,255,1)")]
+		
 		[InlineData("rgba(0,0,0)")]
 		[InlineData("rgb(-1,0,0)")]
 		[InlineData("rgb(255,256,255)")]
