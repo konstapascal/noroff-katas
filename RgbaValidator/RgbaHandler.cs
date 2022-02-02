@@ -30,10 +30,8 @@ namespace RgbaValidator
 		{
 			if (valuesArr.Contains(string.Empty)) return false;
 
-
-
 			bool IsRgbValid = ValidateRgbValues(valuesArr);
-			bool IsAlphaValid = ValidateAlpha(a);
+			bool IsAlphaValid = ValidateAlpha(valuesArr[3]);
 
 			return IsRgbValid && IsAlphaValid;
 		}
@@ -63,13 +61,14 @@ namespace RgbaValidator
 		private static bool IsBetweenRange(double item, int v1, int v2) 
 			=> (item >= v1 && item <= v2);
 
-		private static bool ValidateAlpha(double a)
+		private static bool ValidateAlpha(string alpha)
 		{
-			bool validAlpha = true;
+			double alphaAsDouble = Double.Parse(alpha);
 
-			if (a > 1 || a < 0) validAlpha = false;
+			if (alphaAsDouble > 1 || alphaAsDouble < 0)
+				return false;
 
-			return validAlpha;
+			return true;
 		}
 
 		private static bool ValidateRgbValues(string[] valuesArr)
