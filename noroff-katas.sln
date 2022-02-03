@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardValidator", "CardValida
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaseConverter", "CaseConverter\CaseConverter.csproj", "{CA09589D-9BC2-45BA-B82B-F221E3FF2D92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RgbaValidator", "RgbaValidator\RgbaValidator.csproj", "{809386B6-3A1F-4B7C-BBD6-5B0820C9B00E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RgbaValidator", "RgbaValidator\RgbaValidator.csproj", "{809386B6-3A1F-4B7C-BBD6-5B0820C9B00E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RgbaValidator.Tests", "RgbaValidator.Tests\RgbaValidator.Tests.csproj", "{F68360CD-AEC6-40DE-9F75-F50DE1121B51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RgbaValidator.Tests", "RgbaValidator.Tests\RgbaValidator.Tests.csproj", "{F68360CD-AEC6-40DE-9F75-F50DE1121B51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidName", "ValidName\ValidName.csproj", "{2546029C-01AD-414E-9F26-6D87CEF8DE93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidName.Tests", "ValidName.Tests\ValidName.Tests.csproj", "{426DBD75-8CC4-47E6-9D28-ECB8E12E5627}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{F68360CD-AEC6-40DE-9F75-F50DE1121B51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F68360CD-AEC6-40DE-9F75-F50DE1121B51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F68360CD-AEC6-40DE-9F75-F50DE1121B51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2546029C-01AD-414E-9F26-6D87CEF8DE93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2546029C-01AD-414E-9F26-6D87CEF8DE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2546029C-01AD-414E-9F26-6D87CEF8DE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2546029C-01AD-414E-9F26-6D87CEF8DE93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426DBD75-8CC4-47E6-9D28-ECB8E12E5627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426DBD75-8CC4-47E6-9D28-ECB8E12E5627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426DBD75-8CC4-47E6-9D28-ECB8E12E5627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426DBD75-8CC4-47E6-9D28-ECB8E12E5627}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
