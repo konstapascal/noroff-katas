@@ -70,13 +70,16 @@ namespace RgbaValidator
 			return false;
 		}
 
-		private static bool IsBetweenRange(double item, int v1, int v2) 
+		private static bool IsBetweenRange(decimal item, int v1, int v2) 
+			=> (item >= v1 && item <= v2);
+		private static bool IsBetweenRange(double item, int v1, int v2)
 			=> (item >= v1 && item <= v2);
 
 		private static bool ValidateAlpha(string alpha)
 		{
 			bool isPercentValue = alpha.Contains('%');
-			
+			bool hasLeadingZero = alpha.StartsWith('.');
+
 			if (isPercentValue)
 			{
 				string alphaRemovedSign = alpha.Remove(alpha.Length - 1);
@@ -85,10 +88,13 @@ namespace RgbaValidator
 				if (!IsBetweenRange(alphaRemovedSignDouble, 0, 100)) return false;
 				return true;
 			}
-			
-			double alphaDouble = Double.Parse(alpha);
 
-			if (!IsBetweenRange(alphaDouble, 0, 100)) return false;
+			// if (hasLeadingZero) { }
+
+			decimal alphaDecimal = decimal.Parse(alpha, System.Globalization.NumberStyles.None);
+
+			if (!IsBetweenRange(alphaDecimal, 0, 100)) return false;
+
 			return true;
 		}
 
