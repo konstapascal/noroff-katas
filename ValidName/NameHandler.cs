@@ -38,13 +38,7 @@ namespace ValidName
         }
 
         private static bool hasValidNames(string str)
-            => str.Split(' ').All(str =>
-            {
-                if (str.Length > 2)
-                    return !str.EndsWith('.');
-
-                return true;
-            });
+            => str.Split(' ').All(str => (str.Length > 2) ? !str.EndsWith('.') : true);
 
         private static bool hasValidInitials(string str)
             => str.Split(' ').All(term =>
