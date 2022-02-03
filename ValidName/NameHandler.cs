@@ -52,7 +52,7 @@ namespace ValidName
         private static bool isCapitalized(string str)
             => str.Split(' ').All(term => Char.IsUpper(term[0]));
 
-        private static bool IsValidLength(string str) => 
-            (str.Split(' ').Length == 2) || (str.Split(' ').Length == 3);
+        private static bool IsValidLength(string str) 
+            => (str.Split(' ').Length == 2) || (str.Split(' ').Length == 3);
     }
 }
