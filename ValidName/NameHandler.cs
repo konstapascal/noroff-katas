@@ -10,19 +10,11 @@ namespace ValidName
     {
         public static bool Validate(string str)
         {
-            // Has 2 or 3 terms
+            // Checks for fails
             if (!IsValidLength(str)) return false;
-
-            // All capital letts
             if (!isCapitalized(str)) return false;
-
-            // Initial ends with dot
             if (!hasValidInitials(str)) return false;
-
-            // Initial ends with dot
             if (!hasValidNames(str)) return false;
-
-            // Checks correct order
             if (!isCorrectOrder(str)) return false;
 
             return true;
@@ -32,6 +24,7 @@ namespace ValidName
         {
             var strArr = str.Split(' ');
 
+            // Has 3 terms
             if (strArr.Length == 3)
             {
                 if (strArr[2].Length == 2) return false;
@@ -40,6 +33,7 @@ namespace ValidName
                 return true;
             }
 
+            // Has 2 terms
             return true;
         }
 
